@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'blue_bot'
+package_name = 'blue_bot_controller'
 
 setup(
     name=package_name,
@@ -20,6 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "blue_bot_footballer_1_llm= blue_bot_controller.blue_bot_footballer_v1_llm:main",
+            "blue_bot_subpub= blue_bot_controller.blue_bot_subpub:main",
+            "blue_bot_footballer_v2_llmrl=blue_bot_controller.blue_bot_footballer_v2_llmrl_1:main"
         ],
     },
 )

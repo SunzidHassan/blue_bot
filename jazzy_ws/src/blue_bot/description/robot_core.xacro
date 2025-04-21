@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- we'll define colors to use later-->
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <!-- It's common in ROS to define BASE_LINK first. We define it in the center of the wheel connection, and define the rest of the body in terms of that location -->
+    <!-- BASE_LINK -->
+
+    <link name="base_link">
+    </link>
+
+    <!-- CHASSIS LINK -->
+    <!-- Joint links parent to child link, where we can define the origin location offset - in this case it'll be 0.1m behind the center of the wheel connection. -->
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0">
+    </joint>
+
+    <!-- Now we'll create the actual chassis link -->
+    <link name="chassis">
+        <visual>
+        <!-- The geometry will center in joint origin. We want to align it to the wheel connector -->
+            <origin xyz="0 0 0.0625"/>
+            <geometry>
+                <cylinder radius="0.08" length="0.125"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </chassis>
+
+</robot>
